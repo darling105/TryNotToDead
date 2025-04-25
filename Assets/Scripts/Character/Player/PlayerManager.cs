@@ -4,18 +4,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager : CharacterManager
 {
-    [HideInInspector] public Rigidbody2D rb;
-    [HideInInspector] public CapsuleCollider collider;
-    [HideInInspector] public SpriteRenderer sr;
     [HideInInspector] public Animator anim;
     [SerializeField] private int moveSpeed = 4;
-    [SerializeField] private Vector2 movementInput;
+    [SerializeField] public Vector2 movementInput;
 
     protected override void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        collider = GetComponent<CapsuleCollider>();
-        sr = GetComponent<SpriteRenderer>();
+        base.Awake();
         anim = GetComponent<Animator>();
     }
 
@@ -36,7 +31,7 @@ public class PlayerManager : CharacterManager
     protected override void LateUpdate()
     {
         anim.SetFloat("isMoving", movementInput.magnitude);
-        
+
         if (movementInput.x != 0)
             sr.flipX = movementInput.x < 0;
     }
