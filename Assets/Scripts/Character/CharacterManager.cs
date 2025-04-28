@@ -28,4 +28,9 @@ public class CharacterManager : MonoBehaviour
    {
       
    }
+
+   protected virtual void Dead()
+   {
+      
+   }
 }
