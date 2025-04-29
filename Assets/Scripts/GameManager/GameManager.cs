@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public float maxGameTimer = 2 * 10f;
 
     [Header("Player Info")]
+    public int health;
+    public int maxHealth = 100;
     public int level;
     public int kill;
     public int exp;
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        health = maxHealth;
         DontDestroyOnLoad(gameObject);
     }
 
