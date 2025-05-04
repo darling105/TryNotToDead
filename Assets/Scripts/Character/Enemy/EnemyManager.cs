@@ -20,7 +20,7 @@ public class EnemyManager : CharacterManager
         cld = GetComponent<Collider2D>();
         wait = new WaitForFixedUpdate();
     }
-    
+
     protected override void FixedUpdate()
     {
         base.FixedUpdate();

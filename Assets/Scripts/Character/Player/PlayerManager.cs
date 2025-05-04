@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager : CharacterManager
 {
-    [SerializeField] private int moveSpeed = 4;
+    [SerializeField] public float moveSpeed = 4;
     [SerializeField] public Vector2 movementInput;
 
     [HideInInspector] public Scanner scanner;
