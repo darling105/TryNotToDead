@@ -6,13 +6,16 @@ public class PlayerManager : CharacterManager
 {
     [SerializeField] public float moveSpeed = 4;
     [SerializeField] public Vector2 movementInput;
-
+    [SerializeField] public Hand[] hands;
+    
     [HideInInspector] public Scanner scanner;
 
+    
     protected override void Awake()
     {
         base.Awake();
         scanner = GetComponent<Scanner>();
+        hands = GetComponentsInChildren<Hand>(true);
     }
 
     protected override void Update()

@@ -84,6 +84,9 @@ public class PlayerWeaponManager : MonoBehaviour
                 speed = 0.3f;
                 break;
         }
+        Hand hand = player.hands[(int)data.itemType];
+        hand.sr.sprite = data.hand;
+        hand.gameObject.SetActive(true);
         
         player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
