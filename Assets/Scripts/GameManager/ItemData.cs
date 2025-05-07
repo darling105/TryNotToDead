@@ -7,6 +7,7 @@ public class ItemData : ScriptableObject
     public Enums.ItemType itemType;
     public int itemID;
     public string itemName;
+    [TextArea]
     public string itemDescription;
     public Sprite itemIcon;
 

@@ -20,7 +20,7 @@ public class HUDManager : MonoBehaviour
         {
             case Enums.InfoType.Exp:
                 float currentExp = GameManager.instance.exp;
-                float maxExp = GameManager.instance.nextExp[GameManager.instance.level];
+                float maxExp = GameManager.instance.nextExp[Mathf.Min(GameManager.instance.level, GameManager.instance.nextExp.Length -1)];
                 mySlider.value = currentExp / maxExp;
                 break;
             case Enums.InfoType.Level:

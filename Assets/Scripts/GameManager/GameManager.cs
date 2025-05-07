@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [Header("Game Control")]
+    public bool isLive;
     public float gameTimer;
     public float maxGameTimer = 2 * 10f;
 
@@ -16,11 +17,15 @@ public class GameManager : MonoBehaviour
     public int level;
     public int kill;
     public int exp;
-    public int[] nextExp = { 10, 30, 60, 100, 150, 210, 280, 360, 450, 600 };
+    public int[] nextExp =
+    {
+        10, 30, 60, 100, 150, 210, 280, 360, 450, 600
+    };
 
     [Header("Game Object")]
     public PoolManager pool;
     public PlayerManager player;
+    public LevelUp levelUp;
 
     private void Awake()
     {
@@ -37,11 +42,17 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
+
+        levelUp.Select(0);
+
         DontDestroyOnLoad(gameObject);
     }
 
     private void Update()
     {
+        if (!isLive)
+            return;
+
         gameTimer += Time.deltaTime;
 
         if (gameTimer > maxGameTimer)
@@ -54,10 +65,23 @@ public class GameManager : MonoBehaviour
     {
         exp++;
 
-        if (exp == nextExp[level])
+        if (exp == nextExp[Mathf.Min(level, nextExp.Length - 1)])
         {
             level++;
             exp = 0;
+            levelUp.Show();
         }
+    }
+
+    public void StopGame()
+    {
+        isLive = false;
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        isLive = true;
+        Time.timeScale = 1;
     }
 }

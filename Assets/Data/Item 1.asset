@@ -15,7 +15,9 @@ MonoBehaviour:
   itemType: 1
   itemID: 1
   itemName: Pistol
-  itemDescription: DanChus
+  itemDescription: 'increase damage {0}%
+
+    increase piercing {1}'
   itemIcon: {fileID: -205726582, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseDamage: 2.85
   baseCount: 0

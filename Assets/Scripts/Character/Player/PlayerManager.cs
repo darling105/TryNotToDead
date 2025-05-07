@@ -21,6 +21,10 @@ public class PlayerManager : CharacterManager
     protected override void Update()
     {
         base.Update();
+        
+        if (!GameManager.instance.isLive)
+            return;
+        
         movementInput.x = Input.GetAxisRaw("Horizontal");
         movementInput.y = Input.GetAxisRaw("Vertical");
     }
@@ -28,6 +32,10 @@ public class PlayerManager : CharacterManager
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
+        
+        if (!GameManager.instance.isLive)
+            return;
+        
         Vector2 moveDir = movementInput.normalized * moveSpeed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + moveDir);
     }
@@ -35,6 +43,10 @@ public class PlayerManager : CharacterManager
     protected override void LateUpdate()
     {
         base.LateUpdate();
+        
+        if (!GameManager.instance.isLive)
+            return;
+        
         anim.SetFloat("isMoving", movementInput.magnitude);
 
         if (movementInput.x != 0)

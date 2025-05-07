@@ -20,6 +20,9 @@ public class PlayerWeaponManager : MonoBehaviour
     
     private void Update()
     {
+        if (!GameManager.instance.isLive)
+            return;
+        
         switch (weaponID)
         {
             case 0:

@@ -25,6 +25,9 @@ public class EnemyManager : CharacterManager
     {
         base.FixedUpdate();
 
+        if (!GameManager.instance.isLive)
+            return;
+        
         if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
             return;
 
@@ -38,6 +41,9 @@ public class EnemyManager : CharacterManager
     {
         base.LateUpdate();
 
+        if (!GameManager.instance.isLive)
+            return;
+        
         if (!isLive)
             return;
 
