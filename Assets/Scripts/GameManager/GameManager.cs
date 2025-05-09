@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +13,7 @@ public class GameManager : MonoBehaviour
     public float maxGameTimer = 2 * 10f;
 
     [Header("Player Info")]
+    public int playerID;
     public float health;
     public int maxHealth = 100;
     public int level;
@@ -43,11 +43,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GameStart()
+    public void GameStart(int id)
     {
+        playerID = id;
         health = maxHealth;
-        levelUp.Select(0);
-
+        
+        player.gameObject.SetActive(true);
+        levelUp.Select(playerID % 2);
         ResumeGame();
     }
 
@@ -106,7 +108,7 @@ public class GameManager : MonoBehaviour
     {
         if (!isLive)
             return;
-        
+
         exp++;
 
         if (exp == nextExp[Mathf.Min(level, nextExp.Length - 1)])

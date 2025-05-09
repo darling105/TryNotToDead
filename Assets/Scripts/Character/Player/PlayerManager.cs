@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.InputSystem;
@@ -7,6 +8,7 @@ public class PlayerManager : CharacterManager
     [SerializeField] public float moveSpeed = 4;
     [SerializeField] public Vector2 movementInput;
     [SerializeField] public Hand[] hands;
+    [SerializeField] public RuntimeAnimatorController[] animatorControllers;
 
     [HideInInspector] public Scanner scanner;
 
@@ -16,6 +18,12 @@ public class PlayerManager : CharacterManager
         base.Awake();
         scanner = GetComponent<Scanner>();
         hands = GetComponentsInChildren<Hand>(true);
+    }
+
+    private void OnEnable()
+    {
+        moveSpeed *= CharacterStats.Speed;
+        anim.runtimeAnimatorController = animatorControllers[GameManager.instance.playerID];
     }
 
     protected override void Update()
