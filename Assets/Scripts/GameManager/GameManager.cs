@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     public LevelUp levelUp;
     public Result uiResult;
     public GameObject enemyCleaner;
+    public GameObject characterSelection;
 
     private void Awake()
     {
@@ -51,6 +53,12 @@ public class GameManager : MonoBehaviour
         player.gameObject.SetActive(true);
         levelUp.Select(playerID % 2);
         ResumeGame();
+    }
+
+    public void CharacterSelection()
+    {
+        
+        characterSelection.SetActive(true);
     }
 
     public void GameOver()

@@ -19,7 +19,7 @@ public class CharacterStats : MonoBehaviour
 
     public static float Damage
     {
-        get { return GameManager.instance.playerID == 2 ? 0.9f : 1f; }
+        get { return GameManager.instance.playerID == 2 ? 1.1f : 1f; }
     }
 
     public static int Count

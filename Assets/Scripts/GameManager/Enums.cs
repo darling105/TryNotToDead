@@ -17,6 +17,12 @@ public class Enums : MonoBehaviour
         Level,
         Kill,
         Time,
-        Health
+        Health,
+    }
+
+    public enum Achivement
+    {
+        UnlockJimmy,
+        UnlockLily,
     }
 }
