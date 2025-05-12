@@ -27,7 +27,7 @@ public class EnemyManager : CharacterManager
 
         if (!GameManager.instance.isLive)
             return;
-        
+
         if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
             return;
 
@@ -43,7 +43,7 @@ public class EnemyManager : CharacterManager
 
         if (!GameManager.instance.isLive)
             return;
-        
+
         if (!isLive)
             return;
 
@@ -80,6 +80,7 @@ public class EnemyManager : CharacterManager
         if (health > 0)
         {
             anim.SetTrigger("Hit");
+            SoundManager.instance.PlaySFX(Enums.Sfx.Hit);
         }
         else
         {
@@ -90,6 +91,9 @@ public class EnemyManager : CharacterManager
             anim.SetBool("isDead", true);
             GameManager.instance.kill++;
             GameManager.instance.GetExp();
+
+            if (GameManager.instance.isLive)
+                SoundManager.instance.PlaySFX(Enums.Sfx.Dead);
         }
     }
 

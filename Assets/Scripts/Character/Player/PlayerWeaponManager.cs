@@ -39,11 +39,6 @@ public class PlayerWeaponManager : MonoBehaviour
 
                 break;
         }
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            LevelUp(10, 1);
-        }
     }
 
     public void LevelUp(float damage, int count)
@@ -131,5 +126,7 @@ public class PlayerWeaponManager : MonoBehaviour
         bullet.position = transform.position;
         bullet.rotation = Quaternion.FromToRotation(Vector3.up, direction);
         bullet.GetComponent<Bullet>().Init(damage, count, direction);
+        
+        SoundManager.instance.PlaySFX(Enums.Sfx.Range);
     }
 }

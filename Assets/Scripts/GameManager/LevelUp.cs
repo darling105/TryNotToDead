@@ -17,12 +17,16 @@ public class LevelUp : MonoBehaviour
         Next();
         rect.localScale = Vector3.one;
         GameManager.instance.StopGame();
+        SoundManager.instance.PlaySFX(Enums.Sfx.LevelUp);
+        SoundManager.instance.EffectBGM(true);
     }
 
     public void Hide()
     {
         rect.localScale = Vector3.zero;
         GameManager.instance.ResumeGame();
+        SoundManager.instance.PlaySFX(Enums.Sfx.Select);
+        SoundManager.instance.EffectBGM(false);
     }
 
     public void Select(int i)

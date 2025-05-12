@@ -49,15 +49,17 @@ public class GameManager : MonoBehaviour
     {
         playerID = id;
         health = maxHealth;
-        
+
         player.gameObject.SetActive(true);
         levelUp.Select(playerID % 2);
         ResumeGame();
+        SoundManager.instance.PlayBGM(true);
+        SoundManager.instance.PlaySFX(Enums.Sfx.Select);
     }
 
     public void CharacterSelection()
     {
-        
+        SoundManager.instance.PlaySFX(Enums.Sfx.Select);
         characterSelection.SetActive(true);
     }
 
@@ -74,6 +76,9 @@ public class GameManager : MonoBehaviour
         uiResult.gameObject.SetActive(true);
         uiResult.Lose();
         StopGame();
+        
+        SoundManager.instance.PlayBGM(false);
+        SoundManager.instance.PlaySFX(Enums.Sfx.Lose);
     }
 
     public void GameVictory()
@@ -91,6 +96,9 @@ public class GameManager : MonoBehaviour
         uiResult.gameObject.SetActive(true);
         uiResult.Win();
         StopGame();
+        
+        SoundManager.instance.PlayBGM(false);
+        SoundManager.instance.PlaySFX(Enums.Sfx.Win);
     }
 
     public void GameRetry()

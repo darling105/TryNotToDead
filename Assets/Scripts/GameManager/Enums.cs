@@ -10,7 +10,7 @@ public class Enums : MonoBehaviour
         Shoe,
         Heal,
     }
-    
+
     public enum InfoType
     {
         Exp,
@@ -24,5 +24,17 @@ public class Enums : MonoBehaviour
     {
         UnlockJimmy,
         UnlockLily,
+    }
+
+    public enum Sfx
+    {
+        Dead,
+        Hit,
+        LevelUp = 3,
+        Lose,
+        Melee,
+        Range = 7,
+        Select,
+        Win,
     }
 }
