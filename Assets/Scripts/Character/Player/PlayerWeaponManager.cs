@@ -110,7 +110,7 @@ public class PlayerWeaponManager : MonoBehaviour
             Vector3 rotationVector = Vector3.forward * 360 * i / count;
             bullet.Rotate(rotationVector);
             bullet.Translate(bullet.up * 1.5f, Space.World);
-            bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero);
+            bullet.GetComponent<Bullet>().Init(damage, -100, Vector3.zero);
         }
     }
 

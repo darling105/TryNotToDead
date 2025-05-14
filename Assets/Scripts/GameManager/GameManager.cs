@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public PlayerManager player;
     public LevelUp levelUp;
     public Result uiResult;
+    public Transform uiJoystick;
     public GameObject enemyCleaner;
     public GameObject characterSelection;
 
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        Application.targetFrameRate = 60;
     }
 
     public void GameStart(int id)
@@ -63,6 +65,11 @@ public class GameManager : MonoBehaviour
         characterSelection.SetActive(true);
     }
 
+    public void GameExit()
+    {
+        Application.Quit();
+    }
+    
     public void GameOver()
     {
         StartCoroutine(GameOverCoroutine());
@@ -139,11 +146,13 @@ public class GameManager : MonoBehaviour
     {
         isLive = false;
         Time.timeScale = 0;
+        uiJoystick.localScale = Vector3.zero;
     }
 
     public void ResumeGame()
     {
         isLive = true;
         Time.timeScale = 1;
+        uiJoystick.localScale = Vector3.one;
     }
 }

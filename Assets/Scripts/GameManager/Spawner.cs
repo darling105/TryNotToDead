@@ -6,13 +6,15 @@ public class Spawner : MonoBehaviour
 {
     public Transform[] spawnPoints;
     public SpawnData[] spawnData;
-
+    public float levelTime;
+    
     private int level;
     private float timer;
 
     private void Awake()
     {
         spawnPoints = GetComponentsInChildren<Transform>();
+        levelTime = GameManager.instance.maxGameTimer / spawnData.Length;
     }
 
     private void Update()
@@ -21,7 +23,7 @@ public class Spawner : MonoBehaviour
             return;
 
         timer += Time.deltaTime;
-        level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTimer / 10f), spawnData.Length - 1);
+        level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTimer / levelTime), spawnData.Length - 1);
 
         if (timer > spawnData[level].spawnTime)
         {

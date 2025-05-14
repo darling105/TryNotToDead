@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -17,9 +18,31 @@ public class Bullet : MonoBehaviour
         this.damage = damage;
         this.per = per;
 
-        if (per > -1)
+        if (per >= 0)
         {
             rb.linearVelocity = direcion * 15f;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.CompareTag("Enemy") || per == -100)
+            return;
+
+        per--;
+
+        if (per < 0)
+        {
+            rb.linearVelocity = Vector2.zero;
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if(!other.CompareTag("Area")|| per == -100)
+            return;
+        
+        gameObject.SetActive(false);
     }
 }

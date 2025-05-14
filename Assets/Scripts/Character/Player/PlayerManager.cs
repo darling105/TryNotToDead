@@ -33,8 +33,8 @@ public class PlayerManager : CharacterManager
         if (!GameManager.instance.isLive)
             return;
 
-        movementInput.x = Input.GetAxisRaw("Horizontal");
-        movementInput.y = Input.GetAxisRaw("Vertical");
+        // movementInput.x = Input.GetAxisRaw("Horizontal");
+        // movementInput.y = Input.GetAxisRaw("Vertical");
     }
 
     protected override void FixedUpdate()
@@ -78,5 +78,10 @@ public class PlayerManager : CharacterManager
             anim.SetTrigger("isDead");
             GameManager.instance.GameOver();
         }
+    }
+
+    void OnMove(InputValue value)
+    {
+        movementInput = value.Get<Vector2>();
     }
 }
