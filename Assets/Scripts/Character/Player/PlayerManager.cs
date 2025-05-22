@@ -32,9 +32,6 @@ public class PlayerManager : CharacterManager
 
         if (!GameManager.instance.isLive)
             return;
-
-        // movementInput.x = Input.GetAxisRaw("Horizontal");
-        // movementInput.y = Input.GetAxisRaw("Vertical");
     }
 
     protected override void FixedUpdate()

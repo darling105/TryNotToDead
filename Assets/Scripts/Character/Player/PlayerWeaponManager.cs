@@ -11,18 +11,20 @@ public class PlayerWeaponManager : MonoBehaviour
     public int count;
     public float speed;
 
+    public float shotgunCount = 36;
+
     private float timer;
 
     private void Awake()
     {
         player = GameManager.instance.player;
     }
-    
+
     private void Update()
     {
         if (!GameManager.instance.isLive)
             return;
-        
+
         switch (weaponID)
         {
             case 0:
@@ -40,7 +42,8 @@ public class PlayerWeaponManager : MonoBehaviour
                 break;
         }
     }
-
+    
+    
     public void LevelUp(float damage, int count)
     {
         this.damage = damage * CharacterStats.Damage;
@@ -48,7 +51,7 @@ public class PlayerWeaponManager : MonoBehaviour
 
         if (weaponID == 0)
             Batch();
-        
+
         player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
 
@@ -70,7 +73,7 @@ public class PlayerWeaponManager : MonoBehaviour
                 break;
             }
         }
-        
+
         switch (weaponID)
         {
             case 0:
@@ -84,7 +87,7 @@ public class PlayerWeaponManager : MonoBehaviour
         Hand hand = player.hands[(int)data.itemType];
         hand.sr.sprite = data.hand;
         hand.gameObject.SetActive(true);
-        
+
         player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
 
@@ -122,11 +125,13 @@ public class PlayerWeaponManager : MonoBehaviour
         Vector3 targetPosition = player.scanner.nearestTarget.position;
         Vector3 direction = targetPosition - transform.position;
         direction = direction.normalized;
+
         Transform bullet = GameManager.instance.pool.GetGameObject(prefabsID).transform;
         bullet.position = transform.position;
         bullet.rotation = Quaternion.FromToRotation(Vector3.up, direction);
         bullet.GetComponent<Bullet>().Init(damage, count, direction);
-        
+
         SoundManager.instance.PlaySFX(Enums.Sfx.Range);
     }
+    
 }

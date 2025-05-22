@@ -2,7 +2,8 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
+using Slider = UnityEngine.UIElements.Slider;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,6 +34,8 @@ public class GameManager : MonoBehaviour
     public Transform uiJoystick;
     public GameObject enemyCleaner;
     public GameObject characterSelection;
+    public GameObject gameSetting;
+    public GameObject gameSkill;
 
     private void Awake()
     {
@@ -65,11 +68,17 @@ public class GameManager : MonoBehaviour
         characterSelection.SetActive(true);
     }
 
+    public void GameSetting()
+    {
+        SoundManager.instance.PlaySFX(Enums.Sfx.Select);
+        gameSetting.SetActive(true);
+    }
+
     public void GameExit()
     {
         Application.Quit();
     }
-    
+
     public void GameOver()
     {
         StartCoroutine(GameOverCoroutine());
@@ -83,7 +92,7 @@ public class GameManager : MonoBehaviour
         uiResult.gameObject.SetActive(true);
         uiResult.Lose();
         StopGame();
-        
+
         SoundManager.instance.PlayBGM(false);
         SoundManager.instance.PlaySFX(Enums.Sfx.Lose);
     }
@@ -103,7 +112,7 @@ public class GameManager : MonoBehaviour
         uiResult.gameObject.SetActive(true);
         uiResult.Win();
         StopGame();
-        
+
         SoundManager.instance.PlayBGM(false);
         SoundManager.instance.PlaySFX(Enums.Sfx.Win);
     }
@@ -147,6 +156,7 @@ public class GameManager : MonoBehaviour
         isLive = false;
         Time.timeScale = 0;
         uiJoystick.localScale = Vector3.zero;
+        gameSkill.SetActive(false);
     }
 
     public void ResumeGame()
@@ -154,5 +164,6 @@ public class GameManager : MonoBehaviour
         isLive = true;
         Time.timeScale = 1;
         uiJoystick.localScale = Vector3.one;
+        gameSkill.SetActive(true);
     }
 }
